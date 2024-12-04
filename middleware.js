@@ -1,28 +1,18 @@
 import { NextResponse } from "next/server";
-import { createMiddlewareSupabaseClient } from "@supabase/auth-helpers-nextjs";
 
-export async function middleware(req) {
-  const res = NextResponse.next();
+export function middleware(request) {
+  // Get the session cookie or token (replace 'a_session' with your Appwrite session cookie name if using cookies)
+  const session = request.cookies.get("a_session");
 
-  const supabase = createMiddlewareSupabaseClient({ req, res });
-
-  // Check for an active session
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  // If no session and trying to access protected routes, redirect to login
-  const protectedRoutes = ["/dashboard"]; // Add all protected routes here
-  if (
-    !session &&
-    protectedRoutes.some((route) => req.nextUrl.pathname.startsWith(route))
-  ) {
-    return NextResponse.redirect(new URL("/admin", req.url));
+  // If no session is found and user tries to access /dashboard, redirect to login
+  if (!session && request.nextUrl.pathname.startsWith("/dashboard")) {
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  return res;
+  // Allow the request if authenticated
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"], // Adjust matcher for the routes you want to protect
+  matcher: ["/dashboard/:path*"], // Apply middleware to all /dashboard routes
 };
