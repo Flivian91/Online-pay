@@ -11,9 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased`}
-      >
+      <body className={`antialiased`}>
         <AppProvider>{children}</AppProvider>
         <ToastContainer position="top-right" autoClose={3000} />
       </body>
