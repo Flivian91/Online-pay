@@ -2,8 +2,6 @@
 import { LuLogIn } from "react-icons/lu";
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
-import { toast } from "react-toastify";
-import NotFound from "../NotFound";
 import fakeDelay from "@/context/delay";
 import { useRouter } from "next/navigation";
 import LoadingSpinner from "../LoadinSpinner";
@@ -21,7 +19,7 @@ function LoginForm() {
       .insert({ email, password });
     if (error) {
       // Toast Message On Development
-      toast.error(error.message);
+      console.log(error.message);
     } else {
       setLoading(true);
       await fakeDelay(3000);

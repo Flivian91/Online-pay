@@ -2,8 +2,6 @@
 import React from "react";
 import EmailInput from "./EmailInput";
 import { supabase } from "@/lib/supabaseClient";
-import { toast } from "react-toastify";
-
 function UserModel({ onClose, data }) {
   const { email, password, id, status } = data;
 
@@ -13,9 +11,9 @@ function UserModel({ onClose, data }) {
       .update({ status: true })
       .eq("id", id);
     if (error) {
-      toast.error(error.message);
+      console.log(error.message);
     } else {
-      toast.success("Status Updated Successfully");
+      console.log("Status Updated Successfully");
       onClose();
     }
   }

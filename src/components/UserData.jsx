@@ -6,7 +6,7 @@ import { FaMapPin } from "react-icons/fa6";
 import Overlay from "./Overlay";
 import UserModel from "./UserModel";
 import { supabase } from "@/lib/supabaseClient";
-import { toast } from "react-toastify";
+
 function UserData({ data, onDelete }) {
   const [isOpen, setIsOpen] = useState(false);
   const { email, status, id } = data;

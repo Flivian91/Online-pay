@@ -1,7 +1,6 @@
 import "./globals.css";
 import { AppProvider } from "@/context/appContext";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 
 export const metadata = {
   title: "Create Next App",
@@ -13,7 +12,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`antialiased`}>
         <AppProvider>{children}</AppProvider>
-        <ToastContainer position="top-right" autoClose={3000} />
       </body>
     </html>
   );

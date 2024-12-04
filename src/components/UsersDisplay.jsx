@@ -4,7 +4,6 @@ import Header from "./Header";
 import UserData from "./UserData";
 import { supabase } from "@/lib/supabaseClient";
 import LoadingSpinner from "./LoadinSpinner";
-import { toast } from "react-toastify";
 function UsersDisplay() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +24,7 @@ function UsersDisplay() {
   }, []);
 
   if (loading) return <LoadingSpinner />;
-  if (error) return toast.error(error);
+  if (error) return console.log(error);
 
   async function handleDelete(clientID) {
     const { error } = await supabase
@@ -33,10 +32,10 @@ function UsersDisplay() {
       .delete()
       .eq("id", clientID);
     if (error) {
-      toast.error(error.message);
+      console.log(error.message);
     } else {
       fetchData();
-      toast.success("Client Data Deleted Successfully");
+      console.log("Client Data Deleted Successfully");
     }
   }
 

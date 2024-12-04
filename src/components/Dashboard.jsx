@@ -1,8 +1,6 @@
 import React from "react";
 import FilterSection from "./FilterSection";
 import UsersDisplay from "./UsersDisplay";
-import Overlay from "./Overlay";
-import UserModel from "./UserModel";
 
 function Dashboard() {
   return (

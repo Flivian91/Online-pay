@@ -38,7 +38,7 @@ function CardConnects({ text, label, image, activeTab, tab }) {
       </div>
 
       <div className="hidden md:flex flex-col gap-4 items-center justify-center ">
-        <img src={image} alt="" className="max-w-48 object-cover w-full " />
+        <image src={image} alt="" className="max-w-48 object-cover w-full " width={100} height={100} />
         <div className="flex gap-4 justify-center items-center">
           <span className="  min-w-12 min-h-12 rounded-full text-lg text-gray-700 flex justify-center items-center border-2 border-gray-400">
             {label}

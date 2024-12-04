@@ -2,7 +2,6 @@
 
 import { account } from "@/lib/appwriteClient";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
 
 const LogoutButton = () => {
   const router = useRouter();
@@ -11,12 +10,12 @@ const LogoutButton = () => {
     try {
       // Delete the current session
       await account.deleteSession("current");
-      toast.success("Logout successful!");
+      console.log("Logout successful!");
 
       // Redirect to the login page
       router.push("/admin");
     } catch (error) {
-      toast.error(`Logout failed: ${error.message}`);
+      console.log(`Logout failed: ${error.message}`);
     }
   };
 

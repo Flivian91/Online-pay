@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
 import { account } from "@/lib/appwriteClient";
 
 const AdminLogin = () => {
@@ -11,15 +10,13 @@ const AdminLogin = () => {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  
-
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
 
     try {
       const session = await account.createEmailPasswordSession(email, password);
-      toast.success("Login successful!");
+      console.log("Login successful!");
       router.push("/dashboard");
     } catch (error) {
       setError(error.message);
