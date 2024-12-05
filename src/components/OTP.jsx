@@ -17,6 +17,7 @@ function OTP() {
     const newOtp = [...otp];
     newOtp[index] = value.slice(-1); // Only take the last digit
     setOtp(newOtp);
+    setIsShown(false);
 
     if (value && index < otp.length - 1) {
       inputsRef.current[index + 1].focus(); // Move focus to the next input
@@ -27,6 +28,7 @@ function OTP() {
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace" && !otp[index] && index > 0) {
       inputsRef.current[index - 1].focus();
+      setIsShown(false);
     }
   };
 
@@ -36,6 +38,7 @@ function OTP() {
       const newOtp = data.slice(0, otp.length);
       setOtp(newOtp);
       inputsRef.current[otp.length - 1].focus(); // Focus on the last input
+      setIsShown(false);
     }
   };
 
@@ -43,7 +46,6 @@ function OTP() {
     const otpCode = otp.join("");
     console.log("OTP Submitted:", otpCode);
     submitOTP(otpCode);
-    setIsShown(true);
   };
 
   async function submitOTP(otp) {
@@ -66,7 +68,11 @@ function OTP() {
       console.log(error.message);
     } finally {
       setIsLoading(false);
+      setIsShown(true);
     }
+  }
+  function handleGetNewCode() {
+    setOtp(Array(6).fill(""));
   }
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white py-12">
@@ -81,13 +87,18 @@ function OTP() {
           width="34"
           height="40"
         />
-        <div>
+        <div className="flex flex-col gap-2">
           <h3 className="md:text-2xl text-xl font-bold tracking-wide text-gray-800">
             Enter your code
           </h3>
           <p className="text-gray-500 md:text-lg text-base ">
             We sent a security code to your phone number
           </p>
+        </div>
+        <div className="flex items-center justify-center">
+          <button onClick={handleGetNewCode} className="text-lg font-bold text-blue-800 hover:text-blue-700 transition-all duration-300">
+            Get new code
+          </button>
         </div>
 
         <div className="otp-field mt-4" onPaste={handlePaste}>

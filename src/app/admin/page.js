@@ -16,6 +16,7 @@ const AdminLogin = () => {
 
     try {
       const session = await account.createEmailPasswordSession(email, password);
+      document.cookie = `app_session=${session}; Path=/; HttpOnly; Secure;`;
       console.log("Login successful!");
       router.push("/dashboard");
     } catch (error) {
