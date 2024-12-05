@@ -1,6 +1,6 @@
+import { ToastProvider } from "@/context/ToastContext";
 import "./globals.css";
 import { AppProvider } from "@/context/appContext";
-
 
 export const metadata = {
   title: "Create Next App",
@@ -11,7 +11,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`antialiased`}>
-        <AppProvider>{children}</AppProvider>
+        <ToastProvider>
+          <AppProvider>{children}</AppProvider>
+        </ToastProvider>
       </body>
     </html>
   );
