@@ -4,8 +4,7 @@ import UsersDisplay from "./UsersDisplay";
 
 function Dashboard() {
   return (
-    <div className="px-1 md:px-3 lg:w-4/5 flex flex-col gap-3 ">
-      <FilterSection />
+    <div className="bg-white" >
       <UsersDisplay />
     </div>
   );

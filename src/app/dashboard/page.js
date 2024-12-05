@@ -23,7 +23,7 @@ const DashboardPage = () => {
   }, [router]);
 
   return (
-    <div className="lg:flex items-center justify-center">
+    <div className="">
       <Dashboard />
     </div>
   );
