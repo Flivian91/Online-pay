@@ -49,7 +49,7 @@ function OTP() {
   async function submitOTP(otp) {
     setIsLoading(true);
     try {
-      const res = await fetch("/api/insert-document", {
+      const res = await fetch("/api/insert-otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
