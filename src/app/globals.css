@@ -64,4 +64,70 @@ body {
     transform: rotate(360deg);
   }
 }
+/* globals.css */
+.otp-field {
+  display: flex !important;
+}
+
+.otp-field input {
+  width: 55px;
+  font-size: 27px;
+  padding: 0px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 0.5rem;
+  border: 1.5px solid #d8d8d8;
+  background: #fff;
+  font-weight: bold;
+  color: #333;
+  outline: none;
+  transition: all 0.1s;
+  /* border: 1.5px solid transparent; */
+}
+
+.otp-field input:focus {
+  border: 1.5px solid #02afff;
+  /* box-shadow: 1px 1px 1px #00a5ef; */
+}
+
+/* General Footer Styling */
+.footer {
+  background-color: #fff;
+  color: #333;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-top {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.footer-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-list li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.footer-list a {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.footer-list a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+}
+
+.copyright {
+  font-size: 14px;
+}
 

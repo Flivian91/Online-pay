@@ -1,7 +1,10 @@
-const { Client, Account } = require("appwrite");
+const { Client, Account, Databases } = require("appwrite");
 
 const client = new Client()
   .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT)
   .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID);
 
-export const account = new Account(client);
+const account = new Account(client);
+const databases = new Databases(client);
+
+export { account, databases };
