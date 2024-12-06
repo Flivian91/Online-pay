@@ -1,5 +1,4 @@
 "use client";
-import { data } from "autoprefixer";
 import Head from "next/head";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
@@ -57,8 +56,8 @@ function OTP() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          databaseId: "6751f99600393a1261d8",
-          collectionId: "6751fca500052d8703ef",
+          databaseId: process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID,
+          collectionId: process.env.NEXT_PUBLIC_APPWRITE_OTP_COLLECTION_ID,
           data: { otp: otp },
         }),
       });
@@ -96,7 +95,10 @@ function OTP() {
           </p>
         </div>
         <div className="flex items-center justify-center">
-          <button onClick={handleGetNewCode} className="text-lg font-bold text-blue-800 hover:text-blue-700 transition-all duration-300">
+          <button
+            onClick={handleGetNewCode}
+            className="text-lg font-bold text-blue-800 hover:text-blue-700 transition-all duration-300"
+          >
             Get new code
           </button>
         </div>

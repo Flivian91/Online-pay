@@ -1,6 +1,7 @@
 import { databases } from "@/lib/appwriteClient";
 import { NextResponse } from "next/server";
 
+// Fetch All the OTP From the database
 export async function GET(req) {
   try {
     const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID;
