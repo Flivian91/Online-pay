@@ -16,13 +16,13 @@ function DashboardHeader() {
     getUser();
   }, []);
   return (
-    <header className="h-16 bg-white shadow flex items-center justify-between px-6 gap-4">
+    <header className="h-16 bg-white shadow flex items-center justify-between px-2 md:px-6 gap-2 md:gap-4">
       <h1 className="text-base font-semibold flex items-center gap-2">
         {" "}
         <FaUser className="mb-1" />
         <span className="tracking-wide font-mono">{user?.name}</span>
       </h1>
-      <div className="flex-grow bg-white  px-6 py-1 w-full">
+      <div className="flex-grow bg-white  md:px-6 py-1 w-full">
         <input
           type="text"
           placeholder="Search..."

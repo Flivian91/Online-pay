@@ -4,7 +4,7 @@ import LogoutButton from "./LogoutButton";
 
 function Sidebar() {
   return (
-    <aside className="w-64 bg-gradient-to-r from-blue-500 to-purple-600 text-white flex flex-col">
+    <aside className="w-64 hidden bg-gradient-to-r from-blue-500 to-purple-600 text-white lg:flex flex-col">
       <div className="p-4 text-xl font-bold border-b border-blue-400">
         Admin Dashboard
       </div>

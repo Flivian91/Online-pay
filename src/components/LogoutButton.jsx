@@ -1,16 +1,18 @@
 "use client";
 
+import { useToast } from "@/context/ToastContext";
 import { account } from "@/lib/appwriteClient";
 import { useRouter } from "next/navigation";
 
 const LogoutButton = () => {
   const router = useRouter();
+  const { addToast } = useToast();
 
   const handleLogout = async () => {
     try {
       // Delete the current session
       await account.deleteSession("current");
-      console.log("Logout successful!");
+      addToast("Logout successful!", "success", 3000);
 
       // Redirect to the login page
       router.push("/admin");

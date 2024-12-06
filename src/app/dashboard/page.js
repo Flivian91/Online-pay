@@ -23,7 +23,7 @@ const DashboardPage = () => {
   }, [router]);
 
   return (
-    <div className="">
+    <div className="mt-2">
       <Dashboard />
     </div>
   );

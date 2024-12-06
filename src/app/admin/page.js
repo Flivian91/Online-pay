@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { account } from "@/lib/appwriteClient";
+import { useToast } from "@/context/ToastContext";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const { addToast } = useToast();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,7 +19,7 @@ const AdminLogin = () => {
     try {
       const session = await account.createEmailPasswordSession(email, password);
       document.cookie = `app_session=${session}; Path=/; HttpOnly; Secure;`;
-      console.log("Login successful!");
+      addToast("Login successful!", "success", 3000);
       router.push("/dashboard");
     } catch (error) {
       setError(error.message);

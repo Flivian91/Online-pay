@@ -12,7 +12,7 @@ export default function DashboardLayout({ children, userName }) {
         {/* Header */}
         <DashboardHeader />
         {/* Main Content */}
-        <main className="flex-1 p-6 overflow-y-auto">
+        <main className="flex-1 px-2  md:p-6 overflow-y-auto">
           {/* Main content (passed as children) */}
           {children}
         </main>
