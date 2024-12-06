@@ -5,6 +5,7 @@ export async function POST(req) {
   try {
     // Destructure the Request from the bosy
     const { databaseId, collectionId, data } = await req.json();
+    console.log(data);
     // Condition to make sure the data is inserted correctly
     if (!databaseId || !collectionId || !data) {
       return NextResponse.json(
@@ -12,7 +13,7 @@ export async function POST(req) {
         { status: 400 }
       );
     }
-    console.log(data);
+
     // Generate the Custom Document ID
     const documentId = uuidv4();
 

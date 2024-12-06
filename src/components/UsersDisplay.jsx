@@ -9,14 +9,15 @@ function UsersDisplay() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const fetchData = async () => {
-    const { data, error } = await supabase.from("clients").select("*");
-
-    if (error) {
-      setError(error.message);
-    } else {
-      setData(data);
-    }
-
+    try {
+      setLoading(true);
+      // const { data, error } = await supabase.from("clients").select("*");
+      const response = await fetch("/api/clients");
+      if (!response.ok) throw new Error("Failed to load Client Info");
+      // setData(response.clients);
+      const { clients } = await response.json();
+      setData(clients);
+    } catch (error) {}
     setLoading(false);
   };
   useEffect(() => {
@@ -45,7 +46,7 @@ function UsersDisplay() {
         <Header />
         <div className="flex flex-col divide-y divide-gray-300 py-3 ">
           {data.map((item) => (
-            <UserData key={item.id} data={item} onDelete={handleDelete} />
+            <UserData key={item.$id} data={item} onDelete={handleDelete} />
           ))}
         </div>
       </div>

@@ -11,6 +11,7 @@
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/supabase-js": "^2.46.2",
+    "africastalking": "^0.7.1",
     "appwrite": "^16.0.2",
     "autoprefixer": "^10.4.20",
     "date-fns": "^4.1.0",
