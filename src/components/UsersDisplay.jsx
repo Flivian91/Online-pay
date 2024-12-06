@@ -27,21 +27,29 @@ function UsersDisplay() {
   if (loading) return <LoadingSpinner />;
   if (error) return console.log(error);
 
-  async function handleDelete(clientID) {
-    const { error } = await supabase
-      .from("clients")
-      .delete()
-      .eq("id", clientID);
-    if (error) {
-      console.log(error.message);
-    } else {
-      fetchData();
-      console.log("Client Data Deleted Successfully");
+  async function handleDelete(documentId) {
+    try {
+      const response = await fetch("/api/clients/delete", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ documentId }),
+      });
+
+      if (response.ok) {
+        setData(data.filter((data) => data.$id !== documentId)); // Remove client from UI
+        addToast("Client Deleted Successfuly!", "success", 3000);
+      } else {
+        addToast("Failed to Delete OTP!", "success", 3000);
+      }
+    } catch (error) {
+      console.error("Error deleting OTP:", error);
     }
   }
 
   return (
-    <div className="flex flex-col gap-2 px-3 border rounded shadow  min-w-full overflow-hidden ">
+    <div className="flex flex-col gap-2 px-3 border rounded shadow  bg-white min-w-full overflow-hidden ">
       <div>
         <Header />
         <div className="flex flex-col divide-y divide-gray-300 py-3 ">

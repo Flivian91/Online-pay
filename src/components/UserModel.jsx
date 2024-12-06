@@ -2,21 +2,32 @@
 import React from "react";
 import EmailInput from "./EmailInput";
 import { supabase } from "@/lib/supabaseClient";
+import { useToast } from "@/context/ToastContext";
 function UserModel({ onClose, data }) {
-  const { email, password, id, status } = data;
+  const { email, password, $id, status } = data;
+  const { addToast } = useToast();
 
   async function handleToogleStatus() {
-    const { data, error } = await supabase
-      .from("clients")
-      .update({ status: true })
-      .eq("id", id);
-    if (error) {
-      console.log(error.message);
-    } else {
-      console.log("Status Updated Successfully");
-      onClose();
-    }
+    const status = true;
+    updateStatus($id, status);
   }
+  const updateStatus = async (documentId, newStatus) => {
+    const response = await fetch("/api/clients/update", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ documentId, status: newStatus }),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      addToast("Status updated Successfully", "success", 3000);
+      onClose();
+    } else {
+      console.log("Error:", data.error);
+    }
+  };
 
   return (
     <div className="fixed top-1/2 left-1/2 mx-auto w-full md:w-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 bg-white shadow-2xl rounded px-4 py-6">
