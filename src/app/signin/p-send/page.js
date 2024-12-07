@@ -4,8 +4,8 @@ import React from "react";
 
 function page() {
   return (
-    <div>
-      <NotFound />
+    <div >
+      {/* <NotFound /> */}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 function FooterLogin() {
   return (
     <footer className="w-full bg-slate-100 py-3">
-      <div className="flex justify-center gap-3">
+      <div className="flex justify-center gap-4">
         <p className="text-sm text-gray-400 tracking-wide font-semibold">
           Contact Us
         </p>

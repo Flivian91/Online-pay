@@ -15,20 +15,6 @@ function LoginForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // const { error } = await supabase
-    //   .from("clients")
-    //   .insert({ email, password });
-    // if (error) {
-    //   // Toast Message On Development
-    //   console.log(error.message);
-    // } else {
-    //   setLoading(true);
-    //   await fakeDelay(3000);
-    //   setLoading(false);
-    //   router.push("/otp");
-    //   setEmail("");
-    //   setPassword("");
-    // }
     addClient();
   }
   async function addClient() {
@@ -60,26 +46,27 @@ function LoginForm() {
       className="flex flex-col md:px-7 px-4 w-full  gap-3 "
     >
       {loading && <LoadingSpinner />}
-      <div className="flex flex-col relative gap-3   py-2">
+      <div className="flex flex-col relative gap-3 py-2">
         <div className="flex flex-col">
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="text"
             placeholder=""
+            id="email"
             required
-            className="peer text-gray-500 font-semibold px-3 border-2 border-gray-300 outline-none focus:ring-4 focus:ring-blue-600 focus:border-buttonTextColor  py-5 text-xl transition duration-300 ease-in-out rounded-md "
+            className="peer text-lg input-box pt-5 text-gray-500 focus:bg-white hover:border-[#097ff5] font-semibold px-3 border border-gray-300 outline-none  py-5 transition duration-300 ease-in-out rounded-md "
           />
           <label
             htmlFor="email"
-            className="absolute left-3 text-gray-500 font-semibold text-base top-2 select-none sm:text-sm transition-all duration-300 ease-in-out peer-placeholder-shown:top-4 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500 peer-placeholder-shown:font-semibold peer-focus:top-2 peer-focus:text-sm "
+            className="absolute left-3 top-2 text-[#6c7378] font-semibold text-lg select-none  sm:text-sm transition-all duration-300 ease-in-out peer-placeholder-shown:top-2 peer-placeholder-shown:text-lg peer-placeholder-shown:text-[#6c7378] peer-placeholder-shown:font-semibold peer-focus:top-2 peer-focus:text-lg"
           >
             Email or phone number
           </label>
         </div>
       </div>
       <div className="flex flex-col relative gap-3   py-2">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2">
           <input
             id="password"
             value={password}
@@ -87,13 +74,13 @@ function LoginForm() {
             type="password"
             required
             placeholder=""
-            className="peer text-xl text-gray-500 font-semibold px-3 border-2 border-gray-300 outline-none focus:ring-4 focus:ring-blue-600 focus:border-buttonTextColor  py-5 transition duration-300 ease-in-out rounded-md "
+            className="peer text-lg input-box pt-5 text-gray-500 focus:bg-white hover:border-[#097ff5] font-semibold px-3 border border-gray-300 outline-none  py-5 transition duration-300 ease-in-out rounded-md "
           />
           <label
             htmlFor="password"
-            className="absolute left-3 top-2 text-gray-500 font-semibold text-base select-none  sm:text-sm transition-all duration-300 ease-in-out peer-placeholder-shown:top-4 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500 peer-placeholder-shown:font-semibold peer-focus:top-2 peer-focus:text-sm "
+            className="absolute left-3 top-2 text-[#6c7378] font-semibold text-lg select-none  sm:text-sm transition-all duration-300 ease-in-out peer-placeholder-shown:top-2 peer-placeholder-shown:text-lg peer-placeholder-shown:text-[#6c7378] peer-placeholder-shown:font-semibold peer-focus:top-2 peer-focus:text-lg "
           >
-            Password
+            Enter your password
           </label>
         </div>
       </div>
@@ -103,8 +90,8 @@ function LoginForm() {
         </p>
       </div>
 
-      <div className="w-full md:w-96 flex flex-col gap-3 ">
-        <button className="text-base font-bold bg-buttonTextColor  border-2 border-buttonTextColor/45 text-white w-full rounded-3xl py-3 flex justify-center items-center font-sans hover:bg-buttonTextColor/90">
+      <div className="w-full  flex flex-col gap-3 ">
+        <button className="text-base font-bold bg-[#0544b5]  border-2 border-buttonTextColor/45 text-white w-full rounded-3xl py-3 flex justify-center items-center font-sans hover:#063faadc">
           {loading ? "submitting..." : "Login"}
         </button>
         <button className="text-base w-full font-bold bg-white  border-2 border-gray-700 text-gray-700  rounded-3xl py-3 flex justify-center gap-1 items-center font-sans hover:text-buttonTextColor/90 hover:border-buttonTextColor/90">
@@ -119,11 +106,11 @@ function LoginForm() {
         </button>
       </div>
       <div className="flex mt-5 items-center">
-        <p className="border-b h-1 w-full  border-gray-400 "></p>
+        <p className="border-b h-1 w-full  border-gray-300 "></p>
         <p className="px-1">or</p>
-        <p className=" h-1 w-full border-b border-gray-400"></p>
+        <p className=" h-1 w-full border-b border-gray-300"></p>
       </div>
-      <div className="w-full md:w-96">
+      <div className="w-full">
         <button className="text-base w-full font-bold bg-white  border-2 border-gray-700 text-gray-700  rounded-3xl py-3 flex justify-center items-center font-sans hover:text-buttonTextColor/90 hover:border-buttonTextColor/90">
           Sign Up
         </button>

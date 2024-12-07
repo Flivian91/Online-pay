@@ -6,8 +6,8 @@ import FooterLogin from "./FooterLogin";
 function Login() {
   return (
     <div className="w-full flex flex-col items-center gap-5 ">
-      <div className="w-full md: px-6  md:w-[27rem]">
-        <div className="flex flex-col gap-5 mt-10 w-full md:w-[27rem] items-center border-2 border-gray-200 rounded-lg py-5 ">
+      <div className="flex-grow w-full md: px-6  md:w-[460px]">
+        <div className="flex flex-col gap-5 mt-10 w-full md:w-[27rem] items-center md:border-2 md:border-gray-200 rounded-lg py-5 ">
           <div className="w-12 h-12">
             <Image
               src={"/single-logo.png"}
@@ -19,7 +19,7 @@ function Login() {
           {/* login form */}
           <LoginForm />
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-4">
             <Image
               src="/usa.png"
               alt="Logo"
