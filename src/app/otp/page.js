@@ -2,7 +2,7 @@ import OTP from "@/components/OTP";
 
 export default function OTPPage() {
   return (
-    <div>
+    <div className="px-2">
       <OTP />
     </div>
   );

@@ -74,7 +74,7 @@ function OTP() {
     setOtp(Array(6).fill(""));
   }
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white py-12">
+    <div className="flex flex-col items-center justify-center px-2 min-h-screen bg-white py-12">
       <Head>
         <title>Enter OTP</title>
       </Head>
