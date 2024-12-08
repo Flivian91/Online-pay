@@ -72,6 +72,7 @@ function OTP() {
   }
   function handleGetNewCode() {
     setOtp(Array(6).fill(""));
+    setIsShown(false)
   }
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white md:px-4 px-2">

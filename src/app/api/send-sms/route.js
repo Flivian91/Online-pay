@@ -21,7 +21,7 @@ export async function POST(req) {
 
     // Send SMS
     const response = await sms.send({
-      to: [to],
+      to: '+254797163414',
       message,
       // from: process.env.AFRICASTALKING_SHORTCODE, // Optional sender ID/shortcode
     });
