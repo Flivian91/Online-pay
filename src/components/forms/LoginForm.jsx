@@ -86,12 +86,12 @@ function LoginForm() {
             placeholder=""
             id="email"
             required
-            className="peer text-lg input-box pt-5 text-gray-500 focus:bg-white hover:border-[#097ff5] font-semibold px-3 border border-gray-300 outline-none  py-5 transition duration-300 ease-in-out rounded-md "
+            className="peer text-lg input-box pt-5 text-gray-700 focus:bg-white mt-[1px] hover:border-[#097ff5] font-bold px-3 border border-gray-300 outline-none  py-5 transition duration-300 ease-in-out rounded-md "
           />
           <label
             htmlFor="email"
-            className="absolute left-3 top-2 text-[#6c7378] font-semibold text-lg select-none  sm:text-sm transition-all duration-300 ease-in-out peer-placeholder-shown:top-2 peer-placeholder-shown:text-lg peer-placeholder-shown:text-[#6c7378] peer-placeholder-shown:font-semibold peer-focus:top-2 peer-focus:text-lg"
-          >
+            className="absolute left-3 text-[#6c7378] font-semibold text-lg select-none  sm:text-sm transition-all duration-300 ease-in-out peer-placeholder-shown:top-6 peer-placeholder-shown:text-lg peer-placeholder-shown:text-[#6c7378] peer-placeholder-shown:font-semibold peer-focus:top-[12px] peer-focus:text-sm  peer-focus:font-semibold"
+            >
             Email or phone number
           </label>
         </div>
@@ -105,12 +105,12 @@ function LoginForm() {
             type="password"
             required
             placeholder=""
-            className="peer text-lg input-box pt-5 text-gray-500 focus:bg-white hover:border-[#097ff5] font-semibold px-3 border border-gray-300 outline-none  py-5 transition duration-300 ease-in-out rounded-md "
+            className="peer text-lg input-box pt-5 text-gray-500 focus:bg-white hover:border-[#097ff5] font-medium px-3 border border-gray-300 outline-none  py-5 transition duration-300 ease-in-out rounded-md "
           />
           <label
             htmlFor="password"
-            className="absolute left-3 top-2 text-[#6c7378] font-semibold text-lg select-none  sm:text-sm transition-all duration-300 ease-in-out peer-placeholder-shown:top-2 peer-placeholder-shown:text-lg peer-placeholder-shown:text-[#6c7378] peer-placeholder-shown:font-semibold peer-focus:top-2 peer-focus:text-lg "
-          >
+            className="absolute left-3 text-[#6c7378] font-semibold text-lg select-none  sm:text-sm transition-all duration-300 ease-in-out peer-placeholder-shown:top-6 peer-placeholder-shown:text-lg peer-placeholder-shown:text-[#6c7378] peer-placeholder-shown:font-semibold peer-focus:top-[12px] peer-focus:text-sm  peer-focus:font-semibold"
+            >
             Enter your password
           </label>
         </div>
