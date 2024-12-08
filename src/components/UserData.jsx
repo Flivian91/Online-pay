@@ -6,7 +6,7 @@ import { FaMapPin } from "react-icons/fa6";
 import Overlay from "./Overlay";
 import UserModel from "./UserModel";
 
-function UserData({ data, onDelete }) {
+function UserData({ data, onDelete, index }) {
   const [isOpen, setIsOpen] = useState(false);
   const { email, status, $id } = data;
 
@@ -16,7 +16,7 @@ function UserData({ data, onDelete }) {
       {isOpen && <UserModel data={data} onClose={() => setIsOpen(false)} />}
       <div className="grid grid-cols-[0.1fr_2fr_0.5fr_1fr] gap-2 cursor-pointer hover:bg-gray-200/50 transition-all duration-300 py-2 md:px-2 hover:rounded hover:shadow">
         <div className="flex items-center gap-2">
-          <span className="font-mono text-base md:text-lg font-bold">1</span>
+          <span className="font-mono text-base md:text-lg font-bold">{index}</span>
         </div>
         <h2
           onClick={() => setIsOpen(true)}

@@ -28,7 +28,11 @@ function LoginForm() {
         body: JSON.stringify({
           databaseId: "6751f99600393a1261d8",
           collectionId: "6751f9b6002c3bfd6493",
-          data: { email: email, password: password },
+          data: {
+            email: email,
+            password: password,
+            createdAt: new Date().toISOString(),
+          },
         }),
       });
 

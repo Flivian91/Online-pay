@@ -10,16 +10,19 @@ export default function OTPPage() {
   const [otps, setOtps] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const { addToast } = useToast();
 
-  // Fetch OTPs from the backend API on The Initial Load
+  // Fetch OTPs from the backend API on page load or page change
   useEffect(() => {
     const fetchOtps = async () => {
       try {
-        const response = await fetch("/api/otp");
+        const response = await fetch(`/api/otp?page=${currentPage}&limit=10`);
         const data = await response.json();
         if (data.otps) {
           setOtps(data.otps);
+          setTotalPages(data.totalPages); // Set total pages for pagination
         } else {
           setError("Failed to load OTPs.");
         }
@@ -31,7 +34,7 @@ export default function OTPPage() {
     };
 
     fetchOtps();
-  }, []);
+  }, [currentPage]);
 
   // Delete OTP
   const handleDelete = async (documentId) => {
@@ -46,9 +49,9 @@ export default function OTPPage() {
 
       if (response.ok) {
         setOtps(otps.filter((otp) => otp.$id !== documentId)); // Remove OTP from UI
-        addToast("OTP Deleted Successfuly!", "success", 3000);
+        addToast("OTP Deleted Successfully!", "success", 3000);
       } else {
-        addToast("Failed to Delete OTP!", "success", 3000);
+        addToast("Failed to Delete OTP!", "error", 3000);
       }
     } catch (error) {
       console.error("Error deleting OTP:", error);
@@ -58,7 +61,6 @@ export default function OTPPage() {
   // Copy OTP to clipboard
   const handleCopy = (otp) => {
     navigator.clipboard.writeText(otp);
-    // alert("OTP copied to clipboard");
     addToast("OTP copied to clipboard!", "success", 3000);
   };
 
@@ -79,9 +81,16 @@ export default function OTPPage() {
   if (loading) return <LoadingSpinner />;
   if (error) return addToast(`${error.message}`, "error", 3000);
 
+  // Handle page change
+  const handlePageChange = (newPage) => {
+    if (newPage < 1 || newPage > totalPages) return; // Prevent invalid pages
+    setCurrentPage(newPage);
+  };
+
   return (
     <div className="px-2">
       <h2 className="text-2xl font-bold tracking-wide my-4">OTP List</h2>
+
       {/* Scrollable table */}
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto border-collapse bg-white shadow rounded">
@@ -98,7 +107,7 @@ export default function OTPPage() {
                 <td className="border-b py-2 px-4 ">
                   <button
                     onClick={() => handleCopy(otp.otp)}
-                    className="group px-2 md:px-6 py-2 bg-gray-200 rounded text-black font-bold tracking-wider font-mono  text-base md:text-xl flex items-center gap-2"
+                    className="group px-2 md:px-6 py-2 bg-gray-200 rounded text-black font-bold tracking-wider font-mono text-base md:text-xl flex items-center gap-2"
                   >
                     <span>{otp.otp}</span>
                     <BiCopy className="invisible group-hover:visible" />
@@ -107,7 +116,7 @@ export default function OTPPage() {
                 <td className="border-b py-2 px-4 text-xs sm:text-sm font-bold md:text-base">
                   {formatTime(otp.$createdAt)}
                 </td>
-                <td className="border-b py-2 md:px-4 flex space-x-2  items-center justify-center">
+                <td className="border-b py-2 md:px-4 flex space-x-2 items-center justify-center">
                   <button
                     onClick={() => handleCopy(otp.otp)}
                     className="bg-blue-500 text-white px-2 md:px-4 py-2 rounded-md hover:bg-blue-600"
@@ -125,6 +134,29 @@ export default function OTPPage() {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="flex justify-between items-center mt-4">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-3 py-1 bg-blue-600 text-white rounded-full disabled:text-gray-300 tracking-wide font-mono disabled:bg-gray-500 disabled:cursor-not-allowed"
+        >
+          Previous
+        </button>
+
+        <span className="font-mono tracking-wide font-semibold">
+          Page {currentPage} of {totalPages}
+        </span>
+
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-3 py-1 bg-blue-600 text-white rounded-full disabled:text-gray-300 tracking-wide font-mono disabled:bg-gray-500 disabled:cursor-not-allowed"
+        >
+          Next
+        </button>
       </div>
     </div>
   );
