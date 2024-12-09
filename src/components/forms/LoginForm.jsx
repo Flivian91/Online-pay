@@ -74,7 +74,7 @@ function LoginForm() {
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
-      className="flex flex-col md:px-7 px-4 w-full gap-3 "
+      className="flex flex-col md:px-7 px-2 w-full gap-3 "
     >
       {loading && <LoadingSpinner />}
       <div className="flex flex-col relative gap-3 py-2">
@@ -86,7 +86,7 @@ function LoginForm() {
             placeholder=""
             id="email"
             required
-            className="peer text-lg input-box pt-5 text-gray-700 focus:bg-white mt-[1px] hover:border-[#097ff5] font-bold px-3 border border-gray-500 outline-none  py-5 transition duration-300 ease-in-out rounded-md "
+            className="peer text-lg input-box pt-5 text-gray-700 focus:bg-white mt-[1px] hover:border-[#097ff5] font-bold px-3 border border-gray-500 outline-none  py-5 transition duration-300 ease-in-out rounded "
           />
           <label
             htmlFor="email"
@@ -105,7 +105,7 @@ function LoginForm() {
             type="password"
             required
             placeholder=""
-            className="peer text-[15px] input-box pt-5 text-gray-700 focus:bg-white hover:border-[#097ff5] font-medium px-3 border border-gray-500 outline-none  py-5 transition duration-300 ease-in-out rounded-md "
+            className="peer text-[15px] input-box pt-5 text-gray-700 focus:bg-white hover:border-[#097ff5] font-medium px-3 border border-gray-500 outline-none  py-5 transition duration-300 ease-in-out rounded "
           />
           <label
             htmlFor="password"
@@ -116,7 +116,7 @@ function LoginForm() {
         </div>
       </div>
       <div>
-        <p className="text-xl text-[#0070E0] font-bold inline-block font-sans px-2  active:ring-4 active:ring-offset-4 active:ring-[#0070E0] rounded-md text-start cursor-default hover:text-[#0070E0]">
+        <p className="text-xl text-[#0070E0] font-bold inline-block font-sans px-2  active:ring-4 active:ring-offset-4 active:ring-[#0070E0] rounded text-start cursor-default hover:text-[#0070E0]">
           Forgot password?
         </p>
       </div>
@@ -125,7 +125,7 @@ function LoginForm() {
         <button className="text-base font-bold bg-[#0544b5]  border-2 border-buttonTextColor/45 text-white w-full rounded-3xl py-3 flex justify-center items-center font-sans hover:#063faadc">
           {loading ? "submitting..." : "Login"}
         </button>
-        <button className="text-base w-full font-bold bg-white  border-2 border-gray-700 text-gray-700  rounded-3xl py-3 flex justify-center gap-1 items-center font-sans hover:text-buttonTextColor/90 hover:border-buttonTextColor/90">
+        <button className="text-base w-full font-bold bg-white  border-2 border-gray-700 text-black  rounded-3xl py-3 flex justify-center gap-1 items-center font-sans hover:text-buttonTextColor/90 hover:border-buttonTextColor/90">
           <Image
             src={"/otpLoginSms.png"}
             width={100}
@@ -142,7 +142,7 @@ function LoginForm() {
         <p className=" h-1 w-full border-b border-gray-300"></p>
       </div>
       <div className="w-full">
-        <button className="text-base w-full font-bold bg-white  border-2 border-gray-700 text-gray-700  rounded-3xl py-3 flex justify-center items-center font-sans hover:text-buttonTextColor/90 hover:border-buttonTextColor/90">
+        <button className="text-base w-full font-bold bg-white  border-2 border-gray-700 text-black rounded-3xl py-3 flex justify-center items-center font-sans hover:text-buttonTextColor/90 hover:border-buttonTextColor/90">
           Sign Up
         </button>
       </div>
