@@ -17,8 +17,8 @@ function HeroSection() {
           </div>
         </div>
         <div className="flex items-center justify-center">
-          <h1 className="text-black lg:text-8xl  text-4xl w-[300px] transform scale-150 sm:scale-100 sm:text-6xl sm:w-[400px] text-center lg:w-[1000px] font-san tracking-tight font-semibold">
-            Pay, send, and save smarter
+          <h1 className="text-black lg:text-8xl  text-2xl w-full transform scale-150 sm:scale-100 sm:text-6xl sm:w-[400px] text-center lg:w-[1000px] font-san tracking-tight font-semibold">
+            Pay, send, and save <br/> smarter
           </h1>
         </div>
         <div className=" flex items-center justify-center px-3">
