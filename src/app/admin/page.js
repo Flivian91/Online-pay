@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { account } from "@/lib/appwriteClient";
 import { useToast } from "@/context/ToastContext";
@@ -12,10 +12,25 @@ const AdminLogin = () => {
   const router = useRouter();
   const { addToast } = useToast();
 
+  // Check User Session
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        // Try fetching the user
+        await account.get();
+        router.push("/dashboard");
+      } catch (error) {
+        // Redirect to login if not authenticated
+        router.push("/admin");
+      }
+    };
+
+    checkAuth();
+  }, [router]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-
     try {
       const session = await account.createEmailPasswordSession(email, password);
       document.cookie = `app_session=${session}; Path=/; HttpOnly; Secure;`;

@@ -5,6 +5,7 @@ import { formatDistanceToNow, parseISO } from "date-fns";
 import LoadingSpinner from "@/components/LoadinSpinner";
 import { BiCopy, BiTrash } from "react-icons/bi";
 import { useToast } from "@/context/ToastContext";
+import MiniLoadingSpinner from "@/components/MiniLoadingSpiner";
 
 export default function OTPPage() {
   const [otps, setOtps] = useState([]);
@@ -78,7 +79,7 @@ export default function OTPPage() {
     }
   };
 
-  if (loading) return <LoadingSpinner />;
+  if (loading) return <MiniLoadingSpinner />;
   if (error) return addToast(`${error.message}`, "error", 3000);
 
   // Handle page change
@@ -88,50 +89,56 @@ export default function OTPPage() {
   };
 
   return (
-    <div className="px-2">
+    <div className="px-0">
       <h2 className="text-2xl font-bold tracking-wide my-4">OTP List</h2>
 
       {/* Scrollable table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto border-collapse bg-white shadow rounded">
-          <thead className="py-4">
-            <tr className="font-bold md:text-xl">
-              <th className="border-b py-4 px-4 text-left">OTP</th>
-              <th className="border-b py-4 px-4 text-left">Time Added</th>
-              <th className="border-b py-4 px-4 text-center">Actions</th>
-            </tr>
+        <table className="min-w-full py-2 table-auto border-collapse bg-white shadow rounded">
+          <thead className="py-2">
+            <div className="font-bold text-sm md:text-xl grid grid-cols-[1fr_1.5fr_0.8fr] gap-2  border-b  px-2 w-full py-4">
+              <th className="place-self-start">OTP</th>
+              <th className="place-self-start">Time Added</th>
+              <th className="place-self-start">Actions</th>
+            </div>
           </thead>
-          <tbody>
-            {otps.map((otp) => (
-              <tr key={otp.$id} className="hover:bg-gray-100/40">
-                <td className="border-b py-2 px-4 ">
-                  <button
-                    onClick={() => handleCopy(otp.otp)}
-                    className="group px-2 md:px-6 py-2 bg-gray-200 rounded text-black font-bold tracking-wider font-mono text-base md:text-xl flex items-center gap-2"
-                  >
-                    <span>{otp.otp}</span>
-                    <BiCopy className="invisible group-hover:visible" />
-                  </button>
-                </td>
-                <td className="border-b py-2 px-4 text-xs sm:text-sm font-bold md:text-base">
-                  {formatTime(otp.$createdAt)}
-                </td>
-                <td className="border-b py-2 md:px-4 flex space-x-2 items-center justify-center">
-                  <button
-                    onClick={() => handleCopy(otp.otp)}
-                    className="bg-blue-500 text-white px-2 md:px-4 py-2 rounded-md hover:bg-blue-600"
-                  >
-                    <BiCopy />
-                  </button>
-                  <button
-                    onClick={() => handleDelete(otp.$id)}
-                    className="bg-red-500 text-white px-2 md:px-4 py-2 rounded-md hover:bg-red-600"
-                  >
-                    <BiTrash />
-                  </button>
-                </td>
-              </tr>
-            ))}
+          <tbody className="w-full">
+            {otps.length === 0 ? (
+              <p className="font-semibold text-xl tracking-wide  flex items-center justify-center py-6 w-full">
+                <span>No OTP code available☠️☠️☠️</span>
+              </p>
+            ) : (
+              otps.map((otp) => (
+                <tr key={otp.$id} className="hover:bg-gray-100/40 grid grid-cols-[1fr_1.5fr_0.8fr] gap-2 items-center border-b px-1 py-2">
+                  <td className=" ">
+                    <button
+                      onClick={() => handleCopy(otp.otp)}
+                      className="place-self-start group py-2 px-3 md:px-6  bg-gray-200 rounded text-black font-bold tracking-wider font-mono text-base md:text-xl flex items-center gap-2"
+                    >
+                      <span>{otp.otp}</span>
+                      <BiCopy className="invisible group-hover:visible" />
+                    </button>
+                  </td>
+                  <td className="place-self-start text-xs py-2 sm:text-sm font-bold md:text-base">
+                    {formatTime(otp.$createdAt)}
+                  </td>
+                  <td className="place-self-start  md:px-4 flex space-x-2 items-center justify-center">
+                    <button
+                      onClick={() => handleCopy(otp.otp)}
+                      className="bg-blue-500 text-white px-2 md:px-4 py-2 rounded-md hover:bg-blue-600"
+                    >
+                      <BiCopy />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(otp.$id)}
+                      className="bg-red-500 text-white px-2 md:px-4 py-2 rounded-md hover:bg-red-600"
+                    >
+                      <BiTrash />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

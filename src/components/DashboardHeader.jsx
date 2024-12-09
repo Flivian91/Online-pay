@@ -25,13 +25,16 @@ function DashboardHeader() {
         <MobileSideBar onOpenSidebar={() => setShowSideBar(false)} />
       )}
 
-      <button onClick={() => setShowSideBar(true)} className="block lg:hidden border border-gray-500 rounded">
+      <button
+        onClick={() => setShowSideBar(true)}
+        className="block lg:hidden border border-gray-500 rounded"
+      >
         <BiMenu className="text-gray-900 font-bold text-2xl cursor-pointer hover:text-green-600" />
       </button>
 
       {showSideBar && <Overlay onClose={() => setShowSideBar(false)} />}
 
-      <h1 className="text-base font-semibold flex items-center gap-2">
+      <h1 className="text-base font-semibold hidden sm:flex  items-center gap-2">
         <FaUser className="mb-1" />
         <span className="tracking-wide font-mono">{user?.name}</span>
       </h1>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import UserData from "./UserData";
 import LoadingSpinner from "./LoadinSpinner";
+import MiniLoadingSpinner from "./MiniLoadingSpiner";
 
 function UsersDisplay() {
   const [data, setData] = useState([]);
@@ -63,7 +64,7 @@ function UsersDisplay() {
     }
   };
 
-  if (loading) return <LoadingSpinner />;
+  if (loading) return <LoadingSpinner/>;
   if (error) return <div>{error}</div>;
 
   return (
