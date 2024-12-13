@@ -142,7 +142,7 @@ function NavBar() {
         >
           Sign Up
         </Link>
-        <button className="p-2 rounded-full border border-transparent hover:border-gray-300">
+        <button className="p-2 rounded-full lg:hidden border border-transparent hover:border-gray-300">
           <BiMenu className="text-2xl rounded" />
         </button>
       </div>
